@@ -1,6 +1,7 @@
 package org.example;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Main {
     public static void main(String[] args) {
@@ -92,5 +93,11 @@ public class Main {
 
         System.out.println("\nGetting chat history of person5 from person1...");
         System.out.println( person4.printChatHistoryFromUser( person1.getUserName() ) );
+
+        System.out.println("\nUsers can iterate through previous sent messages from a specified user.\n============================================================");
+        Iterator searchP1P3  = person2.iterator(person1);
+        while( searchP1P3.hasNext() ){
+            System.out.println( searchP1P3.next() );
+        }
     }
 }

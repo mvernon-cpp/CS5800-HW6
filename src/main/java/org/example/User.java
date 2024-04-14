@@ -1,9 +1,11 @@
 package org.example;
 
+import java.util.Iterator;
+
 //A class representing a user of the chat application. It should have methods to send messages to
 //other users, receive messages from other users, and undo the last message sent.
 //NOTE: You will NOT communicate with other Users directly you will use Mediator!
-public class User {
+public class User implements IterableByUser{
     private String userName;
     private ChatHistory chatHistory;
 
@@ -36,4 +38,13 @@ public class User {
         System.out.println("Messages backed up successfully!");
     }
 
+//    @Override
+//    public searchMessagesByUser iterator() {
+//        return new ChatHistory().iterator()
+//    }
+
+    @Override
+    public Iterator iterator(User userToSearchWith) {
+        return this.chatHistory.iterator(userToSearchWith);
+    }
 }

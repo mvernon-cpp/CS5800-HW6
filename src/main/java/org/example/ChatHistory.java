@@ -2,17 +2,20 @@ package org.example;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 //A class that stores the chat history for a user. It should have methods to add a new
 //message to the history and get the last message sent
-public class ChatHistory {
+public class ChatHistory implements IterableByUser{
 //    private ArrayList<String> savedMessages;
     private HashMap<String, String> savedMessages;
     MessageMemento messageMemento = new MessageMemento(savedMessages);
     public  ChatHistory(){
         this.savedMessages = new HashMap<>();
     }
+
+    public HashMap<String, String> getSavedMessages() {return this.savedMessages;}
     public void saveMessage(String username, String message)
     {
         String newMessage;
@@ -55,8 +58,7 @@ public class ChatHistory {
             return savedMessages.get(username);
         }
     }
-
-    @Override
+        @Override
     public String toString()
     {
         if( savedMessages.isEmpty() )
@@ -68,5 +70,11 @@ public class ChatHistory {
             messageHistory += m.getValue() + "\n";
         return messageHistory;
 
+    }
+
+
+
+    public Iterator iterator(User userToSearchWith) {
+        return new searchMessagesByUser(userToSearchWith);
     }
 }
