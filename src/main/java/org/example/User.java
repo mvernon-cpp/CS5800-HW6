@@ -6,6 +6,7 @@ package org.example;
 public class User {
     private String userName;
     private ChatHistory chatHistory;
+
     public User(String userName){
         this.userName = userName;
         this.chatHistory = new ChatHistory();
@@ -17,16 +18,22 @@ public class User {
         return this.chatHistory.printChatHistoryFromUser(username);
     }
 
-
-        public void receiveMessage(String senderUsername, String message)
+    public void receiveMessage(String senderUsername, String message)
     {
         chatHistory.saveMessage(senderUsername, message);
-        System.out.println(this.userName + ": Message received!");
+//        System.out.println(this.userName + ": Message received!");
     }
 
     public void undoLastMessage()
     {
+        chatHistory.undoMessageMemento();
         System.out.println("Last message undone!");
+    }
+
+    public void backupMessages()
+    {
+        chatHistory.saveMessageMemento();
+        System.out.println("Messages backed up successfully!");
     }
 
 }
