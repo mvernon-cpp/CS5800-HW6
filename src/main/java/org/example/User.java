@@ -23,7 +23,7 @@ public class User implements IterableByUser{
     public void receiveMessage(String senderUsername, String message)
     {
         chatHistory.saveMessage(senderUsername, message);
-//        System.out.println(this.userName + ": Message received!");
+        System.out.println(this.userName + ": Message received!");
     }
 
     public void undoLastMessage()
@@ -37,11 +37,6 @@ public class User implements IterableByUser{
         chatHistory.saveMessageMemento();
         System.out.println("Messages backed up successfully!");
     }
-
-//    @Override
-//    public searchMessagesByUser iterator() {
-//        return new ChatHistory().iterator()
-//    }
 
     @Override
     public Iterator iterator(User userToSearchWith) {
